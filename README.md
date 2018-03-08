@@ -1,3 +1,3 @@
 # Quasar App
 
-> WIP
+A shared empty Quasar project with examples.
