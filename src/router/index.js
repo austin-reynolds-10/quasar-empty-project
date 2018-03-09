@@ -1,8 +1,6 @@
 import Vue from 'vue'
 let t = Vue.prototype
 import VueRouter from 'vue-router'
-import auth from '../store/auth/mixins'
-import store from '../store'
 
 import routes from './routes'
 
