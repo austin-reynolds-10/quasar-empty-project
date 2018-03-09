@@ -1,4 +1,4 @@
-<template>
+<template class="theme-default">
   <div class="center-page center">
     <div>
       <h1>Quasar Rocks</h1>
@@ -26,8 +26,6 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-  div
-    color #D4D4D4
   .center-page
     height 300px
     width 100%
