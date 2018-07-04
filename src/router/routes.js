@@ -2,11 +2,14 @@
 export default [
   {
     path: '/',
-    component: () => import('layouts/main'),
+    component: () => import('layouts/default'),
     children: [
-      { path: '', name: 'home', component: () => import('pages/home') }
+      { path: '', component: () => import('pages/index') }
     ]
   },
-  { path: '/404', name: 'error404', component: () => import('pages/404') },
-  { path: '*', component: () => import('pages/404') } // Not found
+
+  { // Always leave this as last one
+    path: '*',
+    component: () => import('pages/404')
+  }
 ]

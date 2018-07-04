@@ -21,9 +21,14 @@ module.exports = {
   globals: {
     'ga': true, // Google Analytics
     'cordova': true,
+    'codePush': true,
+    'SyncStatus': true,
+    'InstallMode': true,
     '__statics': true,
+    'LocalFileSystem': true,
     '_': true,
-    'amp': true
+    'Camera': true,
+    'device': true
   },
   // add your custom rules here
   'rules': {
@@ -33,8 +38,6 @@ module.exports = {
     // allow paren-less arrow functions
     'arrow-parens': 0,
     'one-var': 0,
-
-    'space-before-function-paren': 'error',
 
     'import/first': 0,
     'import/named': 2,

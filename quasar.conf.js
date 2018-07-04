@@ -2,6 +2,7 @@
 
 module.exports = function (ctx) {
   return {
+    // app plugins (/src/plugins)
     plugins: [
       'lodash',
       'moment',
@@ -10,13 +11,12 @@ module.exports = function (ctx) {
       'mtypes',
       'axios',
       'vuelidate',
-      'vuescrollto'
+      'vuescrollto',
+      'vuefilters',
+      'localforage'
     ],
     css: [
-      'app.styl',
-      'themes/shared.styl',
-      'themes/darktheme.styl',
-      'themes/lighttheme.styl'
+      'app.styl'
     ],
     extras: [
       ctx.theme.mat ? 'roboto-font' : null,
@@ -26,17 +26,13 @@ module.exports = function (ctx) {
       'fontawesome'
     ],
     supportIE: true,
-    vendor: {
-      add: [],
-      remove: []
-    },
     build: {
       scopeHoisting: true,
       vueRouterMode: 'history',
+      // vueCompiler: true,
       // gzip: true,
       // analyze: true,
       // extractCSS: false,
-      // useNotifier: false,
       extendWebpack (cfg) {
         cfg.module.rules.push({
           enforce: 'pre',
@@ -58,69 +54,54 @@ module.exports = function (ctx) {
         'QLayoutHeader',
         'QLayoutDrawer',
         'QPageContainer',
-        'QLayoutFooter',
-        'QSelect',
         'QPage',
-        'QPageSticky',
         'QToolbar',
         'QToolbarTitle',
         'QBtn',
-        'QEditor',
         'QIcon',
-        'QInput',
         'QList',
         'QListHeader',
         'QItem',
         'QItemMain',
         'QItemSide',
-        'QWindowResizeObservable',
-        'QCard',
-        'QCardTitle',
-        'QCardMain',
-        'QCardMedia',
-        'QCardSeparator',
-        'QCardActions',
         'QAlert',
-        'QSpinner',
-        'QSpinnerGears',
-        'QSpinnerHourglass',
-        'QCarousel',
-        'QCarouselSlide',
-        'QCarouselControl',
-        'QTabs',
-        'QTab',
-        'QTabPane',
-        'QRouteTab',
-        'QItemSeparator',
-        'QItemTile',
-        'QSearch',
+        'QInput',
         'QModal',
+        'QSpinnerGears',
+        'QSpinnerOval',
+        'QItemTile',
+        'QItemSeparator',
+        'QLayoutFooter',
+        'QCard',
         'QField',
-        'QCollapsible',
-        'QDialog',
-        'QPopover',
         'QCheckbox',
-        'QOptionGroup',
-        'QDatetime',
-        'QRadio',
-        'QProgress',
-        'QInnerLoading'
+        'QSelect',
+        'QInnerLoading',
+        'QTable',
+        'QTh',
+        'QTr',
+        'QTd',
+        'QTableColumns',
+        'QSearch',
+        'QWindowResizeObservable'
       ],
       directives: [
-        'Ripple',
-        'TouchPan',
-        'CloseOverlay'
+        'Ripple'
       ],
+      // Quasar plugins
       plugins: [
         'Notify',
-        'Loading',
-        'Dialog'
+        'Loading'
       ]
+      // iconSet: ctx.theme.mat ? 'material-icons' : 'ionicons'
+      // i18n: 'de' // Quasar language
     },
     // animations: 'all' --- includes all animations
-    animations: 'all',
+    animations: [
+    ],
     pwa: {
-      cacheExt: 'js,html,css,ttf,eot,otf,woff,woff2,json,svg,gif,jpg,jpeg,png,wav,ogg,webm,flac,aac,mp4,mp3',
+      // workboxPluginMode: 'InjectManifest',
+      // workboxOptions: {},
       manifest: {
         // name: 'Quasar App',
         // short_name: 'Quasar-PWA',
@@ -158,14 +139,19 @@ module.exports = function (ctx) {
         ]
       }
     },
-    cordova: {
-      // id: 'org.cordova.quasar.app'
-    },
+    // cordova: {
+    //   id: 'yourappid',
+    //   version: 'appversion',
+    //   description: 'Your app title'
+    // },
     electron: {
+      // bundler: 'builder', // or 'packager'
       extendWebpack (cfg) {
-        // do something with cfg
+        // do something with Electron process Webpack cfg
       },
       packager: {
+        // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
+
         // OS X / Mac App Store
         // appBundleId: '',
         // appCategoryType: '',
@@ -174,10 +160,12 @@ module.exports = function (ctx) {
 
         // Window only
         // win32metadata: { ... }
-      }
-    },
+      },
+      builder: {
+        // https://www.electron.build/configuration/configuration
 
-    // leave this here for Quasar CLI
-    starterKit: '1.0.0-beta.4'
+        // appId: 'quasar-app'
+      }
+    }
   }
 }
